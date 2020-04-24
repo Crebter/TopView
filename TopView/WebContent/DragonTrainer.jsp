@@ -28,6 +28,8 @@
 							<td><input type="text" name="phone" value="${sessionScope.userinfo.phone }"></td>
 							<td><input type="text" name="card" value="${sessionScope.userinfo.card }" readonly></td>
 							<td><input type="submit" value="修改"></td>
+							<td>                        </td>
+							<td><a href="exit.jsp">退出登录</a></td>
 						</tr >
 
 					</tbody>
@@ -80,7 +82,7 @@
 						<!-- <input type="text" name="name" value=" -->
 					</thead>
 					<tbody>
-						<c:forEach var="Dragon" items="${sessionScope.dragons}">
+						<c:forEach var="Dragon" items="${sessionScope.dragonPageTrainer.getDragons()}">
 							<tr>
 								<input type="hidden" name="id" value="${Dragon.id }">
 								<td><input type="text" name="name" value="${Dragon.name }"></td>
@@ -93,7 +95,22 @@
 							</tr>
 							
 						</c:forEach>
-						
+							<tr>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>总页数:${sessionScope.dragonPageTrainer.getTotalPage() }</td>
+								<td>当前页数:${sessionScope.dragonPageTrainer.getCurrentPage() }</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td><a href="LoginServlet?currentPageTrainerDragon=1">首页</a></td>
+								<td><a href="LoginServlet?currentPageTrainerDragon=${sessionScope.dragonPageTrainer.getCurrentPage()-1 }">上一页</a></td>
+								<td><a href="LoginServlet?currentPageTrainerDragon=${sessionScope.dragonPageTrainer.getCurrentPage()+1 }">下一页</a></td>
+								<td><a href="LoginServlet?currentPageTrainerDragon=1${sessionScope.dragonPageTrainer.getTotalPage() }">尾页</a></td>
+								<td>&nbsp;</td>
+							</tr>
 					</tbody>		
 				</table>
 				<a href="DragonAdd.jsp" align="center">新增</a>

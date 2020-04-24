@@ -29,14 +29,13 @@
 							<td><input type="text" name="phone" value="${sessionScope.userinfo.phone }"></td>
 							<td><input type="text" name="card" value="${sessionScope.userinfo.card }" readonly></td>
 							<td><input type="submit" value="修改"></td>
+							<td>                        </td>
+							<td><a href="exit.jsp">退出登录</a></td>
 						</tr >
 					</tbody>
 				</table>
 			</form>
-			
-			
-			<br/>
-			<br/>
+
 			
 			
 			<form action="UserUpdateServlet" method="post"> 
@@ -55,7 +54,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="Trainers" items="${sessionScope.results}">
+						<c:forEach var="Trainers" items="${sessionScope.userPage.getUsers()}">
 							<tr>
 								<td><input type="text" name="type" value="${Trainers.type }" readonly></td>
 								<td><input type="text" name="id" value="${Trainers.id }" readonly></td>
@@ -67,17 +66,34 @@
 								<td><a href="UserDeleteServlet?id=${Trainers.id }">删除</a></td>
 							</tr>
 						</c:forEach>
+													<tr>
+
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>总页数:${sessionScope.userPage.getTotalPage() }</td>
+								<td>当前页数:${sessionScope.userPage.getCurrentPage() }</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+
+							</tr>
+							<tr>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+								<td><a href="LoginServlet?currentPageUser=1">首页</a></td>
+								<td><a href="LoginServlet?currentPageUser=${sessionScope.userPage.getCurrentPage()-1 }">上一页</a></td>
+								<td><a href="LoginServlet?currentPageUser=${sessionScope.userPage.getCurrentPage()+1 }">下一页</a></td>
+								<td><a href="LoginServlet?currentPageUser=1${sessionScope.userPage.getTotalPage() }">尾页</a></td>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							</tr>
+						
 					</tbody>
 				</table>
 				<a href="DragonTrainerAdd.jsp" align="center">新增</a>
 			</form>
-			
-			<br/>
-			<br/>
+
 			
 			<form action="TribeUpdateServlet" method="post"> 
 				<table align="center" >
-					<caption>您的部落：</caption>
+					<caption>所有部落信息</caption>
 					<thead>
 						<tr>
 							<th>部落编号</th>
@@ -88,7 +104,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="Tribes" items="${sessionScope.tribes }">
+						<c:forEach var="Tribes" items="${sessionScope.tribePage.getTribes() }">
 							<tr>
 								<td><input type="text" name="id" value="${Tribes.id }" readonly></td>
 								<td ><input type="text" name="name" value="${Tribes.name }"></td>
@@ -98,7 +114,21 @@
 								<td><input type="submit" value="修改"></td>
 								<td><a href="TribeDeleteServlet?id=${Tribes.id }">删除</a>
 							</tr>
-						</c:forEach>	
+						</c:forEach>
+							<tr>
+								<td>&nbsp;</td>
+								<td>总页数:${sessionScope.tribePage.getTotalPage() }</td>
+								<td>&nbsp;</td>
+								<td>当前页数:${sessionScope.tribePage.getCurrentPage() }</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td><a href="LoginServlet?currentPageTribe=1">首页</a></td>
+								<td><a href="LoginServlet?currentPageTribe=${sessionScope.tribePage.getCurrentPage()-1 }">上一页</a></td>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+								<td><a href="LoginServlet?currentPageTribe=${sessionScope.tribePage.getCurrentPage()+1 }">下一页</a></td>
+								<td><a href="LoginServlet?currentPageTribe=1${sessionScope.tribePage.getTotalPage() }">尾页</a></td>
+							</tr>	
 					</tbody>
 				</table>
 				<a href="TribeAdd.jsp">新增</a>

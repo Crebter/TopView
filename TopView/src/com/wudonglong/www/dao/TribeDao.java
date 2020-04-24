@@ -9,10 +9,18 @@ import com.wudonglong.www.po.Tribe;
 import com.wudonglong.www.po.User;
 import com.wudonglong.www.util.DBUtil;
 
+
 public class TribeDao {
 	private final String url = "jdbc:mysql://localhost:3306/topview?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC";
 	private final String username ="root";
 	private final String userpwd = "wudonglong";
+	
+	
+	//查询部落总个数
+	public int getTatalCount() {
+		String sql = "select * from tribe";
+		return DBUtil.getTatalCount(sql);
+	}
 	
 	
 	
@@ -94,5 +102,33 @@ public class TribeDao {
 		String sql = "delete from tribe where id = ?";
 		Object[] params = {tribe.getId()};
 		return DBUtil.executeUpdate(sql, params);
+	}
+	
+	
+	
+	//分页查询部落
+	public List<Tribe> queryTribeByPage(int currentPage, int pageSize) {
+		ResultSet rs = null;
+		List<Tribe> tribes = new ArrayList<>();
+		Tribe tribe = new Tribe();
+		String sql = "select * from tribe limit ?,?";
+		
+		Object[] params = {(currentPage-1)*pageSize,pageSize};
+		rs = DBUtil.excuteQuery(sql, params);
+		
+		try {
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String introduction = rs.getString("introduction");
+				String area = rs.getString("area");
+				String address = rs.getString("address");
+				tribe = new Tribe(id,name,introduction,area,address);
+				tribes.add(tribe);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tribes;
 	}
 }

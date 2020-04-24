@@ -16,7 +16,17 @@ import com.wudonglong.www.util.DBUtil;
 //实现类
 public class UserDao {
 	
-
+	
+	//查询部落总个数
+	public int getTatalCount() {
+		String sql = "select * from user";
+		return DBUtil.getTatalCount(sql);
+	}
+	
+	
+	
+	//分页查询用户
+	
 	public boolean isExist(int card) {
 		return queryUserByID(card)==null?false:true;
 	}
@@ -24,61 +34,62 @@ public class UserDao {
 
 	//登陆验证
 	public User login(User user) {
-		ResultSet rs = null;
-		User result = null;
-	try {	
-		String sql = "select * from User where username=? and password=?";
-		Object[] params = {user.getUserName(),user.getPassword()};
-		rs = DBUtil.excuteQuery(sql, params);
-		if(rs.next()){
-			int id = rs.getInt("id");
-			String userName = rs.getString("username");
-			String password = rs.getString("password");
-			int card = rs.getInt("card");
-			int phone = rs.getInt("phone");
-			String type = rs.getString("type");
-//			String userName, String password, String type, int card, int phone
-			result = new User(id,userName,password,type,card,phone);
+			ResultSet rs = null;
+			User result = null;
+		try {	
+			String sql = "select * from User where username=? and password=?";
+			Object[] params = {user.getUserName(),user.getPassword()};
+			rs = DBUtil.excuteQuery(sql, params);
+			if(rs.next()){
+				int id = rs.getInt("id");
+				String userName = rs.getString("username");
+				String password = rs.getString("password");
+				int card = rs.getInt("card");
+				int phone = rs.getInt("phone");
+				String type = rs.getString("type");
+//				String userName, String password, String type, int card, int phone
+				result = new User(id,userName,password,type,card,phone);
+			}
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			DBUtil.closeAll(rs, DBUtil.pstmt, DBUtil.con);
 		}
-		return result;
-	} catch (SQLException e) {
-		e.printStackTrace();
-		return null;
-	}finally {
-		DBUtil.closeAll(rs, DBUtil.pstmt, DBUtil.con);
-	}
-		
-		
-		
-		
-		
-		
 		
 	}	
-//	public List<User> queryUserByPage(int currentPage, int pageSize) {
-//		ResultSet rs = null;
-//		List<User> user = new ArrayList<>();
-//		User User = new User();
-//		String sql = "select * from User limit ?,?";
-//		
-//		Object[] params = {(currentPage-1)*pageSize,pageSize};
-//		rs = DBUtil.excuteQuery(sql, params);
-//		
-//		try {
-//			while(rs.next()) {
-//				int id = rs.getInt("id");
-//				String sname = rs.getString("sname");
-//				int sage = rs.getInt("sage");
-//				String saddress = rs.getString("saddress");
-////				User = new User(id,sname,sage,saddress);
-//				Users.add(User);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return Users;
-//	}
-//	
+	
+	
+	public List<User> queryUserByPage(int currentPage, int pageSize) {
+		ResultSet rs = null;
+		List<User> users = new ArrayList<>();
+		User user = new User();
+		String sql = "select * from user where type=? limit ?,?";
+		String type="DragonTrainer";
+		Object[] params = {type,(currentPage-1)*pageSize,pageSize};
+		rs = DBUtil.excuteQuery(sql, params);
+		try {
+			while(rs.next()) {
+				type = rs.getString("type");
+				String userName = rs.getString("username");
+				String password = rs.getString("password");
+				int id = rs.getInt("id");
+				int card = rs.getInt("card");
+				int phone = rs.getInt("phone");
+	//			id userName password type card phone
+				user = new User(id,userName,password,type,card,phone);
+				users.add(user);
+			}
+			return users;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			DBUtil.closeAll(rs, DBUtil.pstmt, DBUtil.con);
+		}
+	}
+	
 
 	
 	//增加用户

@@ -1,5 +1,8 @@
 package com.wudonglong.www.service;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.wudonglong.www.dao.TribeDao;
@@ -10,7 +13,6 @@ import com.wudonglong.www.util.DBUtil;
 
 public class TribeService {
 	static TribeDao tribeDao = new TribeDao();
-	
 	
 	
 	
@@ -33,5 +35,16 @@ public class TribeService {
 	public boolean deleteTribe(Tribe tribe) {
 		return tribeDao.deleteTribe(tribe);
 	}
+	
+	//分页查询部落
+	public List<Tribe> queryTribeByPage(int currentPage, int pageSize) {
+		return tribeDao.queryTribeByPage(currentPage, pageSize);
+	}
+	
+	//返回数据总数
+	public int getTatalCount() {
+		return tribeDao.getTatalCount();
+	}
+	
 	
 }

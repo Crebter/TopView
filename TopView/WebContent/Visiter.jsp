@@ -18,6 +18,7 @@
 							<th>密码</th>
 							<th>电话</th>
 							<th>身份证号</th>
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -28,6 +29,8 @@
 							<td><input type="text" name="phone" value="${sessionScope.userinfo.phone }"></td>
 							<td><input type="text" name="card" value="${sessionScope.userinfo.card }" readonly></td>
 							<td><input type="submit" value="修改"></td>
+							<td>                        </td>
+							<td><a href="exit.jsp">退出登录</a></td>
 						</tr >
 
 					</tbody>
@@ -48,7 +51,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="Tribe" items="${sessionScope.tribes}">
+						<c:forEach var="Tribe" items="${sessionScope.tribePage.getTribes()}">
 							<tr>
 								<td>${Tribe.id }</td>
 								<td>${Tribe.name }</td>
@@ -57,10 +60,28 @@
 								<td>${Tribe.address }</td>
 							</tr>
 						</c:forEach>
+							<tr>
+								<td>&nbsp;</td>
+								<td>总页数:${sessionScope.tribePage.getTotalPage() }</td>
+								<td>&nbsp;</td>
+								<td>当前页数:${sessionScope.tribePage.getCurrentPage() }</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td><a href="LoginServlet?currentPageTribe=1">首页</a></td>
+								<td><a href="LoginServlet?currentPageTribe=${sessionScope.tribePage.getCurrentPage()-1 }">上一页</a></td>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+								<td><a href="LoginServlet?currentPageTribe=${sessionScope.tribePage.getCurrentPage()+1 }">下一页</a></td>
+								<td><a href="LoginServlet?currentPageTribe=1${sessionScope.tribePage.getTotalPage() }">尾页</a></td>
+							</tr>
 					</tbody>
 			</table>
 			
+
 			
+			
+			
+		
 			<table align="center" style="border-collapse:separate; border-spacing:170px 10px;">
 				<caption>龙信息</caption>
 					<thead>
@@ -72,7 +93,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="dragonsVisiter" items="${sessionScope.dragonsVisiter}">
+						<c:forEach var="dragonsVisiter" items="${sessionScope.dragonPage.getDragons()}">
 							<tr>
 								<td>${dragonsVisiter.name }</td>
 								<td>${dragonsVisiter.age }</td>
@@ -80,8 +101,28 @@
 								<td>${dragonsVisiter.tribeid }</td>
 							</tr>
 						</c:forEach>
+							<tr>
+								<td>&nbsp;</td>
+								<td>总页数:${sessionScope.dragonPage.getTotalPage() }</td>
+								<td>当前页数:${sessionScope.dragonPage.getCurrentPage() }</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td><a href="LoginServlet?currentPageDragon=1">首页</a></td>
+								<td><a href="LoginServlet?currentPageDragon=${sessionScope.dragonPage.getCurrentPage()-1 }">上一页</a></td>
+								<td><a href="LoginServlet?currentPageDragon=${sessionScope.dragonPage.getCurrentPage()+1 }">下一页</a></td>
+								<td><a href="LoginServlet?currentPageDragon=1${sessionScope.dragonPage.getTotalPage() }">尾页</a></td>
+							</tr>
+						
 					</tbody>
 			</table>
+			
+			
+
+
+					
+					
+					
 			
 			
 			
