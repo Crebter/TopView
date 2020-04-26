@@ -6,11 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/visiter.css" rel="stylesheet" type="text/css">
+
 <title>Insert title here</title>
 </head>
 <body>
 			<form action="UserUpdateServlet" method="post"> 
-				<table align="center" >
+				<table align="center" id="table">
 					<caption>您的信息：(若要修改,请填写修改的值)</caption>
 					<thead>
 						<tr>
@@ -19,6 +21,8 @@
 							<th>密码</th>
 							<th>电话</th>
 							<th>身份证号</th>
+							<th>修改</th>
+							<th>状态</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -29,7 +33,6 @@
 							<td><input type="text" name="phone" value="${sessionScope.userinfo.phone }"></td>
 							<td><input type="text" name="card" value="${sessionScope.userinfo.card }" readonly></td>
 							<td><input type="submit" value="修改"></td>
-							<td>                        </td>
 							<td><a href="exit.jsp">退出登录</a></td>
 						</tr >
 					</tbody>
@@ -39,7 +42,7 @@
 			
 			
 			<form action="UserUpdateServlet" method="post"> 
-				<table align="center" >
+				<table align="center" id="table">
 					<caption>驯龙高手信息</caption>
 					<thead>
 						<tr>
@@ -70,29 +73,33 @@
 
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
+								<td>&nbsp;</td>
 								<td>总页数:${sessionScope.userPage.getTotalPage() }</td>
 								<td>当前页数:${sessionScope.userPage.getCurrentPage() }</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
-
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
+								<td><a href="DragonTrainerAdd.jsp" align="center">新增</a></td>
 								<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 								<td><a href="LoginServlet?currentPageUser=1">首页</a></td>
 								<td><a href="LoginServlet?currentPageUser=${sessionScope.userPage.getCurrentPage()-1 }">上一页</a></td>
 								<td><a href="LoginServlet?currentPageUser=${sessionScope.userPage.getCurrentPage()+1 }">下一页</a></td>
 								<td><a href="LoginServlet?currentPageUser=1${sessionScope.userPage.getTotalPage() }">尾页</a></td>
+								
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 								<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 							</tr>
 						
 					</tbody>
 				</table>
-				<a href="DragonTrainerAdd.jsp" align="center">新增</a>
+				
 			</form>
 
 			
 			<form action="TribeUpdateServlet" method="post"> 
-				<table align="center" >
+				<table align="center" id="table">
 					<caption>所有部落信息</caption>
 					<thead>
 						<tr>
@@ -101,6 +108,8 @@
 							<th>简介</th>
 							<th>面积</th>
 							<th>地址</th>
+							<th>修改</th>
+							<th>删除</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -117,21 +126,25 @@
 						</c:forEach>
 							<tr>
 								<td>&nbsp;</td>
+								<td>&nbsp;</td>
 								<td>总页数:${sessionScope.tribePage.getTotalPage() }</td>
 								<td>&nbsp;</td>
 								<td>当前页数:${sessionScope.tribePage.getCurrentPage() }</td>
 								<td>&nbsp;</td>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
+								<td>&nbsp;</td>
 								<td><a href="LoginServlet?currentPageTribe=1">首页</a></td>
 								<td><a href="LoginServlet?currentPageTribe=${sessionScope.tribePage.getCurrentPage()-1 }">上一页</a></td>
-								<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+								<td><a href="TribeAdd.jsp">新增</a></td>
 								<td><a href="LoginServlet?currentPageTribe=${sessionScope.tribePage.getCurrentPage()+1 }">下一页</a></td>
 								<td><a href="LoginServlet?currentPageTribe=1${sessionScope.tribePage.getTotalPage() }">尾页</a></td>
+								<td>&nbsp;</td>
 							</tr>	
 					</tbody>
 				</table>
-				<a href="TribeAdd.jsp">新增</a>
+				
 			</form>			
 			
 			

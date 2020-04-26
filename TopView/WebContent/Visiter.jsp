@@ -5,9 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/visiter.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 </head>
 <body>	
+
+	<div id="user">
 			<form action="UserUpdateServlet" method="post"> 
 				<table align="center" >
 					<caption>您的信息：(若要修改,请填写修改的值)</caption>
@@ -36,10 +39,10 @@
 					</tbody>
 				</table>
 			</form>
-			
+	</div>		
 			</br>
-
-			<table align="center" style="border-collapse:separate; border-spacing:170px 10px;">
+	
+			<table id="table">
 				<caption>部落信息</caption>
 					<thead>
 						<tr>
@@ -82,7 +85,7 @@
 			
 			
 		
-			<table align="center" style="border-collapse:separate; border-spacing:170px 10px;">
+			<table id="table">
 				<caption>龙信息</caption>
 					<thead>
 						<tr>

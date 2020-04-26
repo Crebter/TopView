@@ -5,11 +5,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/visiter.css" rel="stylesheet" type="text/css">
+
 <title>Insert title here</title>
 </head>
 <body>
+
 		<form action="UserUpdateServlet" method="post"> 
-				<table align="center" >
+				<table align="center" id="table">
 					<caption>您的信息：(若要修改,请填写修改的值)</caption>
 					<thead>
 						<tr>
@@ -18,6 +21,8 @@
 							<th>密码</th>
 							<th>电话</th>
 							<th>身份证号</th>
+							<th>修改</th>
+							<th>状态</th>						
 						</tr>
 					</thead>
 					<tbody>
@@ -28,7 +33,6 @@
 							<td><input type="text" name="phone" value="${sessionScope.userinfo.phone }"></td>
 							<td><input type="text" name="card" value="${sessionScope.userinfo.card }" readonly></td>
 							<td><input type="submit" value="修改"></td>
-							<td>                        </td>
 							<td><a href="exit.jsp">退出登录</a></td>
 						</tr >
 
@@ -39,7 +43,7 @@
 			
 			
 			<form action="TribeUpdateServlet" method="post"> 
-				<table align="center" >
+				<table align="center" id="table">
 					<caption>您的部落：</caption>
 					<thead>
 						<tr>
@@ -48,6 +52,7 @@
 							<th>简介</th>
 							<th>面积</th>
 							<th>地址</th>
+							<th>修改</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -67,7 +72,7 @@
 			
 			
 			<form action="DragonUpdateServlet" method="post">
-				<table align="center" style="border-collapse:separate; border-spacing:20px 10px;">
+				<table align="center" id="table">
 				<caption>龙信息</caption>
 					<thead>
 						<tr>
@@ -78,6 +83,7 @@
 							<th>所处部落编号</th>
 							<th>修改</th>
 							<th>操作</th>
+							
 						</tr>
 						<!-- <input type="text" name="name" value=" -->
 					</thead>
@@ -102,18 +108,20 @@
 								<td>当前页数:${sessionScope.dragonPageTrainer.getCurrentPage() }</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
-								<td>&nbsp;</td>
+								<td><a href="DragonAdd.jsp" align="center">新增</a></td>
 								<td><a href="LoginServlet?currentPageTrainerDragon=1">首页</a></td>
 								<td><a href="LoginServlet?currentPageTrainerDragon=${sessionScope.dragonPageTrainer.getCurrentPage()-1 }">上一页</a></td>
 								<td><a href="LoginServlet?currentPageTrainerDragon=${sessionScope.dragonPageTrainer.getCurrentPage()+1 }">下一页</a></td>
 								<td><a href="LoginServlet?currentPageTrainerDragon=1${sessionScope.dragonPageTrainer.getTotalPage() }">尾页</a></td>
 								<td>&nbsp;</td>
+								<td>&nbsp;</td>
 							</tr>
 					</tbody>		
 				</table>
-				<a href="DragonAdd.jsp" align="center">新增</a>
+				
 				
 			</form>
 			

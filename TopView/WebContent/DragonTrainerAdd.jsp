@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/visiter.css" rel="stylesheet" type="text/css">
+
 <title>Insert title here</title>
 <script src="js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
@@ -61,7 +63,7 @@
 		    <h4 align="center">ps:身份证号不能与他人一致</h4>
 		    <h5 align="center" color="red">tip:请记住添加的驯龙高手的编号->用于添加部落</h5>
 		    <hr/>
-		    <table align="center">
+				<table align="center" id="table">
 		    	<tr>
 		        	<td>
 			        <select  name="type" id="type" >

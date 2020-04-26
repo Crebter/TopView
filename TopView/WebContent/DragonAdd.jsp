@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/visiter.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 </head>
 <body>
 		
 			<form action="DragonAddServlet" method="post">
-				<table align="center">
+				<table align="center" id="table">
 				<caption>添加的龙信息</caption>
 							<tr><td>名字:<input type="text" name="name" ></td><tr>
 							<tr><td>简介:<input type="text" name="introduction" ></td></tr>
